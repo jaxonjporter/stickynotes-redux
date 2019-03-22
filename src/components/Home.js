@@ -1,27 +1,30 @@
 import React from "react";
 import { Link, } from "react-router-dom";
-import { Button, } from "semantic-ui-react";
+import { Button, Card, Segment,} from "semantic-ui-react";
 import { connect, } from 'react-redux';
 
 const Home = ({ notes }) => (
-  <div>
-    <h1>Home</h1>
-    <ul>
-    { notes.map( (t,i) => {
+  <div style={{marginTop: "15px"}}>
+    <Segment>
+      <h1>Home</h1>
+    </Segment>
+    <Card.Group>
+
+    { notes.map( (t) => {
       return (
-        <li key={i}>
-          <h4>
-          {t.name}
-          </h4>
-          <p> 
-          {t.description}
-          </p>
-        </li>
+         <Card key={t.id}>
+          <Card.Content>
+            {t.name}
+          <Card.Meta>
+            {t.description}
+          </Card.Meta>
+          </Card.Content>
+         </Card>
       )
-     })
-    }
-  </ul>
-    <Button as={Link} to="/newnote">New Note</Button>
+    })
+  }
+  </Card.Group>
+    <Button as={Link} to="/newnote" style={{marginTop: "20px"}}>New Note</Button>
   </div>
 )
 

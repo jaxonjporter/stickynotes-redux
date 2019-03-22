@@ -8,9 +8,11 @@ class NoteForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { dispatch, } = this.props;
+    const { dispatch, id, } = this.props;
     const { name, description, } = this.state;
-    dispatch({ type: 'ADD_NOTE', note: {name, description, }});
+    const note = { name, description, id, complete: false, };
+    dispatch({ type: 'ADD_NOTE', note,});
+    dispatch({ type: 'INC_ID', });
     this.setState({ name: '', description: '', });
   }
 
@@ -38,6 +40,10 @@ class NoteForm extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return { id: state.nextId, };
+};
 
 
-export default connect()(NoteForm);
+
+export default connect(mapStateToProps)(NoteForm);
