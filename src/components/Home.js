@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, } from "react-router-dom";
 import { Button, Card, Segment,} from "semantic-ui-react";
+import Note from "./Note";
 import { connect, } from 'react-redux';
 
 const Home = ({ notes }) => (
@@ -12,14 +13,7 @@ const Home = ({ notes }) => (
 
     { notes.map( (t) => {
       return (
-         <Card key={t.id}>
-          <Card.Content>
-            {t.name}
-          <Card.Meta>
-            {t.description}
-          </Card.Meta>
-          </Card.Content>
-         </Card>
+       <Note key={t.id} {...t} />
       )
     })
   }
@@ -27,6 +21,7 @@ const Home = ({ notes }) => (
     <Button as={Link} to="/newnote" style={{marginTop: "20px"}}>New Note</Button>
   </div>
 )
+
 
 const mapStateToProps = (state) => {
   return { notes: state.notes, };
