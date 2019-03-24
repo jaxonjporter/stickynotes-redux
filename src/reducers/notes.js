@@ -10,7 +10,12 @@ const notes = ( state = [], action ) => {
           return note
       })
     case 'EDIT_NOTE':
-
+      return state.map( note => {
+        if (note.id === action.note.id ) {
+          return action.note
+        }
+        else {return note}
+      })
     default:
       return state
   }
