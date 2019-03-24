@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect, } from 'react-redux';
 import { Link, } from 'react-router-dom';
-import { Form, Header, Button } from 'semantic-ui-react';
+import { Form, Header, Button, Card } from 'semantic-ui-react';
 
 class EditForm extends React.Component {
   state = { id: this.props.note.id, name: '', description: '', };
@@ -26,13 +26,13 @@ class EditForm extends React.Component {
     const { name, description } = this.state;
 
     return (
-      <div>
+      <Card.Content>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Input name="name" value={name} onChange={this.handleChange} placeholder="Name" />
-          <Form.Input name="description" value={description} onChange={this.handleChange} placeholder="Description" />
+          <Form.Input name="name" value={name} onChange={this.handleChange} placeholder={this.props.note.name} required />
+          <Form.Input name="description" value={description} onChange={this.handleChange} placeholder={this.props.note.description} required/>
           <Form.Button color="blue">Submit</Form.Button>
         </Form>
-      </div>
+      </Card.Content>
     )
   }
 }

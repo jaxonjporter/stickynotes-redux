@@ -14,6 +14,7 @@ class NoteForm extends React.Component {
     dispatch({ type: 'ADD_NOTE', note,});
     dispatch({ type: 'INC_ID', });
     this.setState({ name: '', description: '', });
+    this.props.history.goBack();
   }
 
   handleChange = (e) => {
